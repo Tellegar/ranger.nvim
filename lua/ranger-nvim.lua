@@ -146,20 +146,19 @@ end
 ---Open a window for ranger to run in.
 local function open_win()
 	local buf = vim.api.nvim_create_buf(false, true)
-	local win_height = math.ceil(vim.o.lines * opts.ui.height)
-	local win_width = math.ceil(vim.o.columns * opts.ui.width)
-	local row = math.ceil((vim.o.lines - win_height) * opts.ui.y - 1)
-	local col = math.ceil((vim.o.columns - win_width) * opts.ui.x)
+	-- local win_height = math.ceil(vim.o.lines * opts.ui.height)
+	-- local win_width = math.ceil(vim.o.columns * opts.ui.width)
+	-- local row = math.ceil((vim.o.lines - win_height) * opts.ui.y - 1)
+	-- local col = math.ceil((vim.o.columns - win_width) * opts.ui.x)
 	local win = vim.api.nvim_open_win(buf, true, {
 		relative = "editor",
-		width = win_width,
-		height = win_height,
-		border = opts.ui.border,
-		row = row,
-		col = col,
+		width = vim.o.columns,
+		height = vim.o.lines - 1,
+		row = 0,
+		col = 0,
 		style = "minimal",
 	})
-	vim.api.nvim_win_set_option(win, "winhl", "NormalFloat:Normal")
+	vim.api.nvim_win_set_option(win, "winhl", "NormalFloat:NormalFloat,FloatBorder:FloatBorder")
 	vim.api.nvim_buf_set_option(buf, "filetype", "ranger")
 end
 
