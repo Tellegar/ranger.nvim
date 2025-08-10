@@ -153,7 +153,7 @@ local function open_win()
 	local win = vim.api.nvim_open_win(buf, true, {
 		relative = "editor",
 		width = vim.o.columns,
-		height = vim.o.lines - 1,
+		height = vim.o.lines - vim.o.cmdheight,
 		row = 0,
 		col = 0,
 		style = "minimal",
